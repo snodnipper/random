@@ -12,7 +12,7 @@ jobs:
       contents: read
     steps:
       - name: Call Echo Branch Name Workflow
-        uses: ./.github/workflows/shared.yml@main
+        uses: ./.github/workflows/shared.yml
         with:
           branch-name: ${{ github.event.ref }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
