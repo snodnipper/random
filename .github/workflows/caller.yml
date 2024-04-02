@@ -2,7 +2,7 @@ name: Branch Delete Action
 
 on:
   delete:
-    branches: 
+    branches:
       - '**'
 
 jobs:
