@@ -1,0 +1,15 @@
+name: Branch Delete Action
+
+on:
+  delete:
+    # This makes the workflow trigger only for branch deletions, not tags.
+    branches: 
+      - '**'
+
+jobs:
+  branch-deletion-message:
+    runs-on: ubuntu-latest
+    if: github.event.ref_type == 'branch'
+    steps:
+      - name: Print Deletion Message
+        run: echo "Hello World, I am deleting ${GITHUB_REF_NAME}"
