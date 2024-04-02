@@ -5,6 +5,8 @@ on:
     branches: 
       - '**'
 
+permissions: read-all
+
 jobs:
   call-shared-workflow:
     #uses: snodnipper/random/.github/workflows/shared.yml@main
