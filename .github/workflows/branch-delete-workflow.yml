@@ -21,6 +21,9 @@ jobs:
       - name: Output Default Branch
         run: echo "The default branch of this repository is ${{ steps.fetch-default-branch.outputs.default_branch }}."
 
+      - name: Output This Branch Name
+        run: echo "This branch is ${GITHUB_REF_NAME}."        
+
       - name: Print Deletion Message
         if: ${{ github.ref_name != 'main' && github.ref_name != 'master' && github.ref_name != steps.fetch-default-branch.outputs.default_branch }}
         run: echo "Hello World, I am deleting ${GITHUB_REF_NAME}"
