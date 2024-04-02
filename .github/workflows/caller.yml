@@ -13,7 +13,7 @@ jobs:
       contents: read
     steps:
       - name: Invoke Shared Workflow
-        uses: .github/workflows/shared.yml
+        uses: snodnipper/random/.github/workflows/shared.yml@main
         with:
           branch-name: ${{ github.event.ref }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
