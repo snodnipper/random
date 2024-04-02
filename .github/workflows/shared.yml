@@ -1,0 +1,29 @@
+name: Stop and Delete Azure Function App Slot, named according to branch name
+
+on:
+  workflow_call:
+    inputs:
+      branch-name:
+        required: true
+        type: string
+        description: 'The name of the branch being processed.'
+      github-token:
+        required: true
+        type: string
+        description: 'GitHub Token for API calls.'
+
+jobs:
+  branch-check-and-echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Default Branch Name
+        id: fetch-default-branch
+        run: |
+          DEFAULT_BRANCH=$(curl -H "Authorization: token ${{ inputs.github-token }}" \
+          https://api.github.com/repos/${{ github.repository }} | jq -r '.default_branch')
+          echo "::set-output name=default_branch::$DEFAULT_BRANCH"
+        shell: bash
+
+      - name: Echo Branch Name
+        if: ${{ inputs.branch-name != 'main' && inputs.branch-name != 'master' && inputs.branch-name != steps.fetch-default-branch.outputs.default_branch }}
+        run: echo "Hello World, I am deleting ${{ inputs.branch-name }}"
