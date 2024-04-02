@@ -7,10 +7,6 @@ on:
         required: true
         type: string
         description: 'The name of the branch being processed.'
-      github-token:
-        required: true
-        type: string
-        description: 'GitHub Token for API calls.'
 
 jobs:
   branch-check-and-echo:
@@ -19,7 +15,7 @@ jobs:
       - name: Fetch Default Branch Name
         id: fetch-default-branch
         run: |
-          DEFAULT_BRANCH=$(curl -H "Authorization: Bearer ${{ inputs.github-token }}" \
+          DEFAULT_BRANCH=$(curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ github.repository }} | jq -r '.default_branch')
           echo "Fetched default branch is $DEFAULT_BRANCH"
         shell: bash
