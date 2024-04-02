@@ -7,13 +7,7 @@ on:
 
 jobs:
   call-shared-workflow:
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-    steps:
-      - name: Invoke Shared Workflow
-        uses: snodnipper/random/.github/workflows/shared.yml@main
-        with:
-          branch-name: ${{ github.event.ref }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+    uses: snodnipper/random/.github/workflows/shared.yml@main
+    with:
+      branch-name: ${{ github.event.ref }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
