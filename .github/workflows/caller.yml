@@ -2,16 +2,17 @@ name: Branch Delete Action
 
 on:
   delete:
-    branches:
+    branches: 
       - '**'
 
 jobs:
-  call-echo-branch-name-workflow:
+  call-shared-workflow:
     runs-on: ubuntu-latest
     permissions:
+      actions: read
       contents: read
     steps:
-      - name: Call Echo Branch Name Workflow
+      - name: Invoke Shared Workflow
         uses: ./.github/workflows/shared.yml
         with:
           branch-name: ${{ github.event.ref }}
